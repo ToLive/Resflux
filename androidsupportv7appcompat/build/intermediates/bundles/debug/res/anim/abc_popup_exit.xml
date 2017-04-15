@@ -18,4 +18,4 @@
     <alpha android:fromAlpha="1.0" android:toAlpha="0.0"
            android:interpolator="@android:anim/decelerate_interpolator"
            android:duration="@integer/abc_config_activityShortDur" />
-</set><!-- From: file:/Users/macmini/Desktop/android-projects/Resflux-gradle/androidsupportv7appcompat/src/main/res/anim/abc_popup_exit.xml -->
+</set>

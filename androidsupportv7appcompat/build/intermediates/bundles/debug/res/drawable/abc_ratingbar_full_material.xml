@@ -22,4 +22,3 @@
     <item android:id="@android:id/progress"
         android:drawable="@drawable/abc_btn_rating_star_on_mtrl_alpha" />
 </layer-list>
-<!-- From: file:/Users/macmini/Desktop/android-projects/Resflux-gradle/androidsupportv7appcompat/src/main/res/drawable/abc_ratingbar_full_material.xml -->

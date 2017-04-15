@@ -32,4 +32,3 @@
               android:ellipsize="end"
               android:visibility="gone" />
 </LinearLayout>
-<!-- From: file:/Users/macmini/Desktop/android-projects/Resflux-gradle/androidsupportv7appcompat/src/main/res/layout/abc_action_bar_title_item.xml -->

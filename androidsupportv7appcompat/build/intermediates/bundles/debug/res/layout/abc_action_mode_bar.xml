@@ -23,4 +23,3 @@
         android:visibility="gone"
         android:theme="?attr/actionBarTheme"
         style="?attr/actionModeStyle"/>
-<!-- From: file:/Users/macmini/Desktop/android-projects/Resflux-gradle/androidsupportv7appcompat/src/main/res/layout/abc_action_mode_bar.xml -->

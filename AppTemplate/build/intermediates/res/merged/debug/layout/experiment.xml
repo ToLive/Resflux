@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TabHost 	
 	xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/tabhost" 
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@android:id/tabhost"
 	android:layout_width="match_parent"
     android:layout_height="match_parent">
    
@@ -19,18 +20,20 @@
 			android:hint="Filter resources"
 			android:visibility="gone"
 			></EditText>
-		
+
 		<TabWidget
-			android:textSize="12sp"
 			android:id="@android:id/tabs"
-            android:layout_width="fill_parent" 
-			android:layout_height="64dp" />
+			android:layout_width="fill_parent"
+			android:layout_height="64dp"
+			android:background="#fff"
+			android:textSize="12sp"/>
 		
 		
         <FrameLayout 
 			android:id="@android:id/tabcontent"
     		android:layout_width="match_parent" 
-			android:layout_height="match_parent">         		
+			android:layout_height="match_parent"
+			>
 				
 			<ListView 		
 				android:id="@+id/resources"
@@ -46,4 +49,3 @@
 		
     </LinearLayout>
 </TabHost>
-<!-- From: file:/Users/macmini/Desktop/android-projects/Resflux-gradle/AppTemplate/src/main/res/layout/experiment.xml -->

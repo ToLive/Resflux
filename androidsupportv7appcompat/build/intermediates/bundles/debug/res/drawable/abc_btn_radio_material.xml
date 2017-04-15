@@ -17,4 +17,4 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true" android:drawable="@drawable/abc_btn_radio_to_on_mtrl_015" />
     <item android:drawable="@drawable/abc_btn_radio_to_on_mtrl_000" />
-</selector><!-- From: file:/Users/macmini/Desktop/android-projects/Resflux-gradle/androidsupportv7appcompat/src/main/res/drawable/abc_btn_radio_material.xml -->
+</selector>

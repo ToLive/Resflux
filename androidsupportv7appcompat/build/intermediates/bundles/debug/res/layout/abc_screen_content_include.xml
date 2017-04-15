@@ -24,4 +24,3 @@
             android:foreground="?android:attr/windowContentOverlay" />
 
 </merge>
-<!-- From: file:/Users/macmini/Desktop/android-projects/Resflux-gradle/androidsupportv7appcompat/src/main/res/layout/abc_screen_content_include.xml -->

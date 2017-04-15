@@ -145,4 +145,4 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
-</LinearLayout><!-- From: file:/Users/macmini/Desktop/android-projects/Resflux-gradle/androidsupportv7appcompat/src/main/res/layout/abc_alert_dialog_material.xml -->
+</LinearLayout>

@@ -23,4 +23,4 @@
         <corners android:radius="2dp" />
         <solid android:color="@color/background_floating_material_light" />
     </shape>
-</inset><!-- From: file:/Users/macmini/Desktop/android-projects/Resflux-gradle/androidsupportv7appcompat/src/main/res/drawable/abc_dialog_material_background_light.xml -->
+</inset>
