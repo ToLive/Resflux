@@ -45,42 +45,42 @@
 			android:orientation="vertical" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content">
-		
-		<Button
-			android:onClick="laboratory"
-			android:layout_width="300dp"
-			android:layout_height="wrap_content"		
-			android:text="Laboratory"
-			/>
-	
-		<Button
-			android:onClick="importt"
-			android:layout_width="300dp"
-			android:layout_height="wrap_content"
-			android:text="Import"
-		/>
 
-		<Button
-			android:onClick="export"
-			android:layout_width="300dp"
-			android:layout_height="wrap_content"
-			android:text="Export"
-		/>
+			<Button
+				android:layout_width="300dp"
+				android:layout_height="50dp"
+				android:onClick="laboratory"
+				android:text="Laboratory"
+				/>
 
-		<Button
-			android:onClick="help"
-			android:layout_width="300dp"
-			android:layout_height="wrap_content"
-			android:text="How to use?"
-			/>	
+			<Button
+				android:layout_width="300dp"
+				android:layout_height="50dp"
+				android:onClick="importt"
+				android:text="Import"
+				/>
+
+			<Button
+				android:layout_width="300dp"
+				android:layout_height="50dp"
+				android:onClick="export"
+				android:text="Export"
+				/>
+
+			<Button
+				android:layout_width="300dp"
+				android:layout_height="50dp"
+				android:onClick="help"
+				android:text="How to use?"
+				/>
 
 
 			<Button
-				android:onClick="about"
 				android:layout_width="300dp"
-				android:layout_height="wrap_content"
+				android:layout_height="50dp"
+				android:onClick="about"
 				android:text="About"
-			/>			
+				/>
 		
 	
 		

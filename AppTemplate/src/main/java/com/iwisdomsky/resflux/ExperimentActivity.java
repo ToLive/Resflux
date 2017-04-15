@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -474,12 +475,40 @@ public class ExperimentActivity extends TabActivity implements TabHost.OnTabChan
 					rf = new File(mPackageColorDir,new File(e.getKey()).getName());
 					try
 					{
-						if (rf.exists()) {
+					if (rf.exists()) {
 							String color = new BufferedReader(new FileReader(rf)).readLine();
-							mRvals.add((color.startsWith("#")?"":"#")+color);
+							//detect if color is in wrong format
+							Log.d("Resflux", "color="+color);
+							if (color.startsWith("#") && ((color.length() == 6) || (color.length() == 8)))
+							{
+								mRvals.add((color.replace("#","#0")));
+							}
+							else if (!color.startsWith("#") && ((color.length() == 5) || (color.length() == 7)))
+							{
+								color = "0"+color;
+								mRvals.add(color);
+							} else
+							{
+								mRvals.add(color);
+							}
 						} else {
-							mRvals.add(e.getValue());
+							String color = e.getValue();
+							Log.d("Resflux", "color="+e.getValue());
+							if (color.startsWith("#") && ((color.length() == 6) || (color.length() == 8)))
+							{
+								mRvals.add((color.replace("#","#0")));
+							}
+							else if (!color.startsWith("#") && ((color.length() == 5) || (color.length() == 7)))
+							{
+								color = "0"+color;
+								mRvals.add(color);
+							}
+							else
+							{
+								mRvals.add(color);
+							}
 							mRkeys.add(e.getKey());
+
 							break;
 						}
 						mRkeys.add("!"+e.getKey());

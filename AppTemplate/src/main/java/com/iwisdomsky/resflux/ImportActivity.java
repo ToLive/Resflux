@@ -143,9 +143,14 @@ public class ImportActivity extends Activity {
 
 	// the method which will scan for zips
 	public void scanForImportCandidates(final File file){
-		if ( file.isDirectory() )
-			for ( final File sub : file.listFiles(getZipFilter()) )
-				scanForImportCandidates(sub);					
+		if ( file.isDirectory())
+        {
+            if (file.listFiles(getZipFilter()) != null)
+            {
+                for (final File sub : file.listFiles(getZipFilter()))
+                    scanForImportCandidates(sub);
+            }
+        }
 		else if ( isCandidateForImport(file) ) { 		
 			mHandler.post(new Runnable(){
 				public void run()

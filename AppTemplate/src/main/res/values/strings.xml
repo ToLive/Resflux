@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noimportfiles">No import files in sdcard/Resflux folder!</string>
+</resources>
