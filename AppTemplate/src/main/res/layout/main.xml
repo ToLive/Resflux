@@ -92,7 +92,7 @@
 		android:gravity="center"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-		android:text="WisdomSky 2017" />
+		android:text="WisdomSky, ToLive 2017" />
 
 	
 </LinearLayout>
