@@ -55,8 +55,7 @@ public class ExportActivity extends Activity implements View.OnClickListener
 		mListView = (ListView)findViewById(R.id.packagelist);		
 		mListView.setFastScrollEnabled(true);
 		mListView.addFooterView(mProgress);
-		mAdapter = new PackageListAdapter(ExportActivity.this,mPackagesList);
-		mListView.setAdapter(mAdapter);
+		//mAdapter = new PackageListAdapter(ExportActivity.this,mPackagesList);
 		mExport = ((Button)findViewById(R.id.export));
 		mExport.setOnClickListener(this);
 		mExport.setEnabled(false);
@@ -275,7 +274,7 @@ public class ExportActivity extends Activity implements View.OnClickListener
 					runOnUiThread(new Runnable(){
 						public void run(){	
 							mPackagesList.add(apps.get(ii).packageName);
-							mAdapter.notifyDataSetChanged();
+							//mAdapter.notifyDataSetChanged();
 						}
 					});
 				}
@@ -292,7 +291,9 @@ public class ExportActivity extends Activity implements View.OnClickListener
 	// method invoked after loading packages
 	private void loadPackagesCallback(){
 		mExport.setEnabled(true);
-		mListView.removeFooterView(mProgress);			
+		mAdapter = new PackageListAdapter(ExportActivity.this,mPackagesList);
+		mListView.removeFooterView(mProgress);
+		mListView.setAdapter(mAdapter);
 		mAdapter.notifyDataSetChanged();	
 		mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 			public void onItemClick(AdapterView<?> p1, View p2, int p3, long p4)

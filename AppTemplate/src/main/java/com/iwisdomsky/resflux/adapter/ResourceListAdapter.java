@@ -11,13 +11,15 @@ import java.util.*;
 import java.util.zip.*;
 import android.content.*;
 
-public class ResourceListAdapter extends ArrayAdapter<String> {
+public class ResourceListAdapter extends ArrayAdapter<String> implements Filterable {
 
 	private final Activity mContext;
-	private final ArrayList<String> mResources;
-	private final ArrayList<String> mValues; 
+	private ArrayList<String> mResources;
+	private ArrayList<String> mFilteredResources;
+	private ArrayList<String> mValues;
 	private final String mSource;
 	private final int mBitmapScaleSize;
+	private ResFilter mResFilter;
 	
 	public static class ViewHolder {
 		public TextView name;
@@ -30,6 +32,7 @@ public class ResourceListAdapter extends ArrayAdapter<String> {
 		super (context, R.layout.resource_item, resources);
 		this.mContext = context;	
 		this.mResources = resources;
+		this.mFilteredResources = new ArrayList<>(mResources);
 		this.mValues = values;
 		this.mSource = source;
 		this.mBitmapScaleSize = context.getSharedPreferences("settings",0).getInt("drawable_size",64);
@@ -77,17 +80,77 @@ public class ResourceListAdapter extends ArrayAdapter<String> {
 		} else
 			holder.icon.setImageDrawable(mContext.getResources().getDrawable(R.drawable.none));
 	
-		if ( mResources.get(position).startsWith("!") ) {
-			String r = mResources.get(position).replaceFirst("!","");
+		if ( mFilteredResources.get(position).startsWith("!") ) {
+			String r = mFilteredResources.get(position).replaceFirst("!","");
 			holder.name.setText(r);
 			holder.name.setTextColor(0xFF77FF77);
 		} else {
-			holder.name.setText(mResources.get(position));
+			holder.name.setText(mFilteredResources.get(position));
 			holder.name.setTextColor(0xFFFFFFFF);
 		}
 	
 		return rowView; 
 	}
-		
+
+	@Override
+	public int getCount() {
+		return mFilteredResources.size();
+	}
+
+	@Override
+	public Filter getFilter() {
+		if (mResFilter == null)
+			mResFilter = new ResFilter();
+
+		return mResFilter;
+	}
+
+	private class ResFilter extends Filter {
+
+		@Override
+		protected FilterResults performFiltering(CharSequence constraint) {
+			// Create a FilterResults object
+			FilterResults results = new FilterResults();
+
+			// If the constraint (search string/pattern) is null
+			// or its length is 0, i.e., its empty then
+			// we just set the `values` property to the
+			// original list which contains all of them
+			if (constraint == null || constraint.length() == 0) {
+				results.values = mResources;
+				results.count = mResources.size();
+			}
+			else {
+				// Some search constraint has been passed
+				// so let's filter accordingly
+				ArrayList<String> filteredRes = new ArrayList<String>();
+
+				// We'll go through all the res and see
+				// if they contain the supplied string
+				for (String c : mResources) {
+					if (c.toUpperCase().contains( constraint.toString().toUpperCase() )) {
+						// if `contains` == true then add it
+						// to our filtered list
+						filteredRes.add(c);
+					}
+				}
+
+				// Finally set the filtered values and size/count
+				results.values = filteredRes;
+				results.count = filteredRes.size();
+			}
+
+			// Return our FilterResults object
+			return results;
+		}
+
+		@Override
+		protected void publishResults(CharSequence constraint, FilterResults results) {
+			mFilteredResources.clear();
+			mFilteredResources.addAll((ArrayList<String>) results.values);
+			notifyDataSetChanged();
+		}
+	}
+
 		
 }

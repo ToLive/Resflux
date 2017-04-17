@@ -17,7 +17,6 @@ ADDED from C:\Dev\Projects\Resflux18\AppTemplate\src\main\AndroidManifest.xml:2:
 		ADDED from C:\Dev\Projects\Resflux18\AppTemplate\src\main\AndroidManifest.xml:3:2-60
 uses-sdk
 ADDED from C:\Dev\Projects\Resflux18\AppTemplate\src\main\AndroidManifest.xml:8:5-10:41
-MERGED from [com.android.support:multidex:1.0.1] C:\Users\ToLive\.android\build-cache\19826cabdc482732cfc083e10f2421e0733d181f\output\AndroidManifest.xml:18:5-42
 MERGED from [com.android.support:appcompat-v7:23.0.1] C:\Users\ToLive\.android\build-cache\639e8ee92cca0bc1b4948dd0e465fe6dc3cc6717\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v13:23.0.1] C:\Users\ToLive\.android\build-cache\ae2bb17d691c097ec968a6f402701a4320fd4b3a\output\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:palette-v7:23.0.1] C:\Users\ToLive\.android\build-cache\fad395b1d59112e8d401f78e8801eb114ee6adf6\output\AndroidManifest.xml:20:5-43

@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TabHost;
@@ -68,6 +69,7 @@ public class ExperimentActivity extends TabActivity implements TabHost.OnTabChan
 	private TextView mHeaderView;
 	private ResourceListAdapter mAdapter; 
 	private TabHost mHost;
+    private EditText filter;
 	
 	// the cobtainers of the keys and corresponding value determined by their index
 	private ArrayList<String> mRkeys;
@@ -113,21 +115,35 @@ public class ExperimentActivity extends TabActivity implements TabHost.OnTabChan
 		});
 		
 		mkDirs();
+
+        filter = (EditText)findViewById(R.id.exp_filter);
 		
-		((EditText)findViewById(R.id.filter)).addTextChangedListener(new TextWatcher(){
+		filter.addTextChangedListener(new TextWatcher(){
 			public void beforeTextChanged(CharSequence a,int b,int c,int d){
 				
 			}
 			public void onTextChanged(CharSequence a,int b,int c,int d){
-				//mAdapter.getFilter().filter(a);
+				Log.d("Resflux", "onTextChanged filter: " + a);
+				mAdapter.getFilter().filter(a.toString());
 			}
 			public void afterTextChanged(Editable e){
 
 			}
 		});
-		
-		
-		// inform the user that first time will take some time
+
+        Button clearFilter = (Button)findViewById(R.id.exp_filter_button);
+        clearFilter.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                filter.setText("");
+            }
+        });
+
+
+
+        // inform the user that first time will take some time
 		if ( !isCached(mPackageName) ) {
 			Toast t = Toast.makeText(this,"This process might take longer time to finish. Don't worry, this will only happen once, so please have some patience. :)",Toast.LENGTH_LONG);
 			t.setGravity(Gravity.CENTER,0,0);
@@ -563,7 +579,8 @@ public class ExperimentActivity extends TabActivity implements TabHost.OnTabChan
 		} else
 			mListView.removeHeaderView(mHeaderView);
 					
-		mAdapter = new ResourceListAdapter(ExperimentActivity.this, mRkeys, mRvals, mPackage.SOURCE);	
+		mAdapter = new ResourceListAdapter(ExperimentActivity.this, mRkeys, mRvals, mPackage.SOURCE);
+        filter.setText(filter.getText());
 		mListView.setAdapter(mAdapter);
 	}
 	
