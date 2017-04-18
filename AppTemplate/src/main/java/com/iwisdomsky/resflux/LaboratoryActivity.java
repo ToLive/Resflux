@@ -73,7 +73,7 @@ public class LaboratoryActivity extends Activity
 			public void onItemClick(AdapterView<?> p1, View p2, int p3, long p4)
 			{				
 				Intent experiment = new Intent(LaboratoryActivity.this,ExperimentActivity.class);
-				experiment.putExtra("package_name",mPackagesList.get(p3).substring(0, mPackagesList.get(p3).indexOf("|")));
+				experiment.putExtra("package_name",adapter.mFilteredPackages.get(p3).substring(0, adapter.mFilteredPackages.get(p3).indexOf("|")));
 				startActivity(experiment);
 			}
 		});
