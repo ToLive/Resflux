@@ -3,14 +3,15 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
+    android:orientation="vertical"
+	android:background="@color/mainbackgroud"
 >
 	<LinearLayout
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 
-		android:padding="5dp">
+		android:paddingLeft="5dp">
 		<EditText
 			android:id="@+id/lab_filter"
 			android:layout_height="wrap_content"
@@ -20,15 +21,17 @@
 			android:layout_weight="1"
 			android:maxLines="1"
 			></EditText>
+
 		<Button
 			android:id="@+id/lab_filter_button"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
-			android:layout_gravity="right|center_vertical"
-			android:drawableStart="@android:drawable/ic_menu_close_clear_cancel"
-			android:background="@android:color/transparent"
+			android:layout_gravity="center"
 			android:layout_weight="1"
-			/>
+			android:background="@android:color/transparent"
+			android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel">
+		</Button>
+
 	</LinearLayout>
 
     <TextView

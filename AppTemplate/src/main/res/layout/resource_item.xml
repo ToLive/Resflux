@@ -11,7 +11,8 @@
 		android:gravity="center"
 		android:layout_height="48dp"
 		android:layout_width="48dp"
-		android:id="@+id/res_icon"/>
+		android:id="@+id/res_icon"
+		/>
 
 	<LinearLayout
 		android:paddingLeft="5dp"
@@ -20,23 +21,23 @@
 		android:orientation="vertical">
 
 		<TextView
-			android:singleLine="true"
-			android:textStyle="bold"
+			android:id="@+id/res_name"
+			android:layout_width="match_parent"
 			android:layout_height="0dp"
+			android:textStyle="bold"
 			android:text="Text"
 			android:textSize="18sp"
-			android:layout_width="match_parent"
+			android:maxLines="1"
 			android:gravity="center_vertical"
-			android:id="@+id/res_name"
 			android:layout_weight="1.0"/>
 
 		<TextView
-			android:singleLine="true"
 			android:id="@+id/res_value"
+			android:layout_width="wrap_content"
 			android:layout_height="0dp"
 			android:text="Text"
 			android:textSize="14sp"
-			android:layout_width="wrap_content"
+			android:maxLines="1"
 			android:layout_weight="1.0"
 			/>
 
