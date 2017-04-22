@@ -48,39 +48,46 @@
 			android:layout_height="wrap_content">
 
 			<Button
+				android:id="@+id/continue_experiment_button"
 				android:layout_width="300dp"
 				android:layout_height="50dp"
-				android:onClick="laboratory"
-				android:text="Laboratory"
+				android:text="@string/continueexperiment"
 				/>
 
 			<Button
+				android:id="@+id/new_experiment_button"
 				android:layout_width="300dp"
 				android:layout_height="50dp"
-				android:onClick="importt"
-				android:text="Import"
+				android:text="@string/newexperiment"
 				/>
 
 			<Button
+				android:id="@+id/import_button"
 				android:layout_width="300dp"
 				android:layout_height="50dp"
-				android:onClick="export"
-				android:text="Export"
+				android:text="@string/importexperiment"
 				/>
 
 			<Button
+				android:id="@+id/export_button"
 				android:layout_width="300dp"
 				android:layout_height="50dp"
-				android:onClick="help"
-				android:text="How to use?"
+				android:text="@string/exportexperiment"
+				/>
+
+			<Button
+				android:id="@+id/help_button"
+				android:layout_width="300dp"
+				android:layout_height="50dp"
+				android:text="@string/help"
 				/>
 
 
 			<Button
+				android:id="@+id/about_button"
 				android:layout_width="300dp"
 				android:layout_height="50dp"
-				android:onClick="about"
-				android:text="About"
+				android:text="@string/about"
 				/>
 		
 	
@@ -93,7 +100,7 @@
 		android:gravity="center"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-		android:text="WisdomSky, ToLive 2017" />
+		android:text="@string/copyright" />
 
 	
 </LinearLayout>

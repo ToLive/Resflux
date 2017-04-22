@@ -74,6 +74,11 @@ public abstract class Utils
 			f.setReadable(true,false);
 			f.setExecutable(true,false);
 		}
+		else
+		{
+			f.setReadable(true,false);
+			f.setExecutable(true,false);
+		}
 		return f;
 	}	
 	

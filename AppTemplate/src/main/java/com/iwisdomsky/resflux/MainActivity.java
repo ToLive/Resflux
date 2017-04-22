@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
@@ -25,6 +26,13 @@ public class MainActivity extends Activity
 
 	ScrollView mRooms;
 	ProgressBar mProgress;
+
+	Button continueExperimentButton;
+	Button newExperimentButton;
+	Button importButton;
+	Button exportButton;
+	Button helpButton;
+	Button aboutButton;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -34,7 +42,65 @@ public class MainActivity extends Activity
         setContentView(R.layout.main);
 		mRooms = (ScrollView) findViewById(R.id.rooms);
 		mProgress = (ProgressBar) findViewById(R.id.loading);
-	
+
+		continueExperimentButton = (Button) findViewById(R.id.continue_experiment_button);
+		newExperimentButton = (Button) findViewById(R.id.new_experiment_button);
+		importButton = (Button) findViewById(R.id.import_button);
+		exportButton = (Button) findViewById(R.id.export_button);
+		helpButton = (Button) findViewById(R.id.help_button);
+		aboutButton = (Button) findViewById(R.id.about_button);
+
+		continueExperimentButton.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				laboratory(LaboratoryActivity.REQUEST_CODE_ONLY_MODDED);
+			}
+		});
+
+		newExperimentButton.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				laboratory(LaboratoryActivity.REQUEST_CODE_FULL);
+			}
+		});
+
+		importButton.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				importt();
+			}
+		});
+
+		exportButton.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				export();
+			}
+		});
+
+		helpButton.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				help();
+			}
+		});
+
+		aboutButton.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				about();
+			}
+		});
+
+
+
+
 		getFilesDir().mkdir();
 		Utils.mkDirs(Environment.getExternalStorageDirectory(),"Resflux");
 		Utils.mkDirs(getFilesDir(),"packages");		
@@ -74,23 +140,24 @@ public class MainActivity extends Activity
 			
 	}
 	
-	public void laboratory(View v) {
+	public void laboratory(int request_code) {
 		Intent i = new Intent(MainActivity.this,LaboratoryActivity.class);
+		i.putExtra("REQUEST_CODE", request_code);
 		startActivity(i);
 	}
 	
-	public void importt(View v) {
+	public void importt() {
 		Intent i = new Intent(MainActivity.this,ImportActivity.class);
 		startActivity(i);
 	}
 	
 	
-	public void export(View v) {
+	public void export() {
 		Intent i = new Intent(MainActivity.this,ExportActivity.class);
 		startActivity(i);
 	}
 
-	public void compile(View v) {
+	public void compile() {
 		try
 		{
 			ApplicationInfo ai = getPackageManager().getApplicationInfo("com.iwisdomsky.resflux.compiler", 0);
@@ -109,7 +176,7 @@ public class MainActivity extends Activity
 	
 	}	
 	
-	public void about(View v) {
+	public void about() {
 		LayoutInflater i = getLayoutInflater();
 		View vv = i.inflate(R.layout.about,null);
 		vv.setMinimumWidth(Constants.DIALOG_MIN_WIDTH);
@@ -119,7 +186,7 @@ public class MainActivity extends Activity
 		.create().show();
 	}
 	
-	public void help(View v) {	
+	public void help() {
 		LayoutInflater i = getLayoutInflater();
 		View vv = i.inflate(R.layout.help,null);
 		vv.setMinimumWidth(Constants.DIALOG_MIN_WIDTH);

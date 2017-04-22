@@ -20,6 +20,11 @@ public class Xposed implements IXposedHookZygoteInit, IXposedHookInitPackageReso
 		mPackagesDir = new File("/data/data/"+mModulePackageName+"/files/packages");
 		for ( File p : mPackagesDir.listFiles()) {
 			mPackages.add(p.getName());
+			Utils.mkDirs(p, "string");
+			Utils.mkDirs(p, "integer");
+			Utils.mkDirs(p, "color");
+			Utils.mkDirs(p, "boolean");
+			Utils.mkDirs(p, "drawable");
 		}
 		mPackages.remove("android");
 		
@@ -92,58 +97,93 @@ public class Xposed implements IXposedHookZygoteInit, IXposedHookInitPackageReso
 		File pkg = new File(mPackagesDir,lpparam.packageName);
 		
 		// for strings
+		Log.d("Package path: "+pkg.getPath());
 		File strings_list = new File(pkg,"string");
-		for ( File f : strings_list.listFiles()) {
-			BufferedReader br = new BufferedReader(new FileReader(f));
-			lpparam.res.setReplacement(lpparam.packageName,"string",f.getName(),br.readLine());
+		Utils.mkDirs(pkg, "string");
+
+		if ((strings_list != null) && (strings_list.length()>0))
+		{
+			for (File f : strings_list.listFiles())
+			{
+				BufferedReader br = new BufferedReader(new FileReader(f));
+				lpparam.res.setReplacement(lpparam.packageName, "string", f.getName(), br.readLine());
+			}
 		}
 		
 		// for integers
 		File ints_list = new File(pkg,"integer");
-		for ( File f : ints_list.listFiles()) {
-			BufferedReader br = new BufferedReader(new FileReader(f));
-			lpparam.res.setReplacement(lpparam.packageName,"integer",f.getName(),Integer.parseInt(br.readLine()));
+		Utils.mkDirs(pkg, "integer");
+
+		if ((ints_list != null) && (ints_list.length()>0))
+		{
+
+			for (File f : ints_list.listFiles())
+			{
+				BufferedReader br = new BufferedReader(new FileReader(f));
+				lpparam.res.setReplacement(lpparam.packageName, "integer", f.getName(), Integer.parseInt(br.readLine()));
+			}
 		}
 		
 		// for colors
 		File colors_list = new File(pkg,"color");
-		for ( File f : colors_list.listFiles()) {
-			BufferedReader br = new BufferedReader(new FileReader(f));
-			String l = br.readLine();
-			lpparam.res.setReplacement(lpparam.packageName,"color",f.getName(),Color.parseColor((l.startsWith("#")?"":"#")+l));
+		Utils.mkDirs(pkg, "color");
+
+		if ((colors_list != null) && (colors_list.length()>0))
+		{
+			for (File f : colors_list.listFiles())
+			{
+				BufferedReader br = new BufferedReader(new FileReader(f));
+				String l = br.readLine();
+				lpparam.res.setReplacement(lpparam.packageName, "color", f.getName(), Color.parseColor((l.startsWith("#") ? "" : "#") + l));
+			}
 		}
 		
 		// for booleans
-		File bools_list = new File(pkg,"boolean");
-		for ( File f : bools_list.listFiles()) {
-			BufferedReader br = new BufferedReader(new FileReader(f));
-			lpparam.res.setReplacement(lpparam.packageName,"bool",f.getName(),Boolean.parseBoolean(br.readLine()));
-		}
+		File bools_list = new File(pkg, "boolean");
+		Utils.mkDirs(pkg, "boolean");
+
+		bools_list.mkdirs();
+			if ((bools_list != null) && (bools_list.length()>0))
+			{
+				for (File f : bools_list.listFiles())
+				{
+					BufferedReader br = new BufferedReader(new FileReader(f));
+					lpparam.res.setReplacement(lpparam.packageName, "bool", f.getName(), Boolean.parseBoolean(br.readLine()));
+				}
+			}
 		
 		
 		// for drawables
-		File drawables_list = new File(pkg,"drawable");
-		for ( File f : drawables_list.listFiles()) {
-			//BufferedReader br = new BufferedReader(new FileReader(f));
-			final File d = f;
-			if ( d.getName().matches("^.*\\.(png|PNG)$") )
-				lpparam.res.setReplacement(lpparam.packageName, "drawable", d.getName().replaceAll("^(.*)(\\.9)?\\.(png|PNG)$","$1"), new XResources.DrawableLoader(){
-					public Drawable newDrawable(XResources p1, int p2) throws Throwable
+		File drawables_list = new File(pkg, "drawable");
+		Utils.mkDirs(pkg, "drawable");
+
+		if ((drawables_list != null) && (drawables_list.length()>0))
+		{
+			for (File f : drawables_list.listFiles())
+			{
+				//BufferedReader br = new BufferedReader(new FileReader(f));
+				final File d = f;
+				if (d.getName().matches("^.*\\.(png|PNG)$"))
+					lpparam.res.setReplacement(lpparam.packageName, "drawable", d.getName().replaceAll("^(.*)(\\.9)?\\.(png|PNG)$", "$1"), new XResources.DrawableLoader()
 					{
-						Drawable e = Drawable.createFromPath(d.getAbsolutePath());
-						return e;						
-					}
-				});
-			else
-				lpparam.res.setReplacement(lpparam.packageName, "drawable", f.getName(), new XResources.DrawableLoader(){
-					public Drawable newDrawable(XResources p1, int p2) throws Throwable
+						public Drawable newDrawable(XResources p1, int p2) throws Throwable
+						{
+							Drawable e = Drawable.createFromPath(d.getAbsolutePath());
+							return e;
+						}
+					});
+				else
+					lpparam.res.setReplacement(lpparam.packageName, "drawable", f.getName(), new XResources.DrawableLoader()
 					{
-						BufferedReader br = new BufferedReader(new FileReader(d));
-						String l = br.readLine();
-						Drawable e = new ColorDrawable(Color.parseColor((l.startsWith("#")?"":"#")+l));
-						return e;						
-					}
-				});
+						public Drawable newDrawable(XResources p1, int p2) throws Throwable
+						{
+							BufferedReader br = new BufferedReader(new FileReader(d));
+							String l = br.readLine();
+							Drawable e = new ColorDrawable(Color.parseColor((l.startsWith("#") ? "" : "#") + l));
+							return e;
+						}
+					});
+			}
 		}
 	
 		

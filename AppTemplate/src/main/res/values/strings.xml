@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="noimportfiles">No import files in sdcard/Resflux folder!</string>
+    <string name="newexperiment">New experiment</string>
+    <string name="continueexperiment">Continue experiment</string>
+    <string name="importexperiment">Import</string>
+    <string name="exportexperiment">Export</string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
+    <string name="copyright">WisdomSky, ToLive 2017</string>
+
 </resources>
